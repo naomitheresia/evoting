@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kelola Kandidat - Admin E-Voting</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="../../css/admin-style.css">
+    <style>
+        .sidebar-active { transform: translateX(0); }
+        .content-shift { margin-left: 16rem; }
+        @media (max-width: 768px) {
+            .content-shift { margin-left: 0; }
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+    <!-- Sidebar -->
+    <div id="sidebar" class="fixed inset-y-0 left-0 z-50 w-64 bg-blue-900 text-white transform -translate-x-full transition-transform duration-300 ease-in-out md:translate-x-0">
+        <div class="flex items-center justify-between p-4 border-b border-blue-800">
+            <div class="flex items-center space-x-3">
+                <img src="../../assets/logo-himatro.png" alt="Himatro" class="w-8 h-8">
+                <h1 class="text-xl font-bold">Admin Panel</h1>
+            </div>
+            <button id="closeSidebar" class="md:hidden">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        
+        <nav class="mt-6">
+            <a href="dashboard.html" class="nav-item flex items-center px-6 py-3 text-blue-100 hover:bg-blue-800 hover:text-white transition-colors">
+                <i class="fas fa-tachometer-alt mr-3"></i>
+                Dashboard
+            </a>
+            <a href="candidates.html" class="nav-item flex items-center px-6 py-3 text-blue-100 hover:bg-blue-800 hover:text-white transition-colors active">
+                <i class="fas fa-users mr-3"></i>
+                Kelola Kandidat
+            </a>
+            <a href="voting.html" class="nav-item flex items-center px-6 py-3 text-blue-100 hover:bg-blue-800 hover:text-white transition-colors">
+                <i class="fas fa-vote-yea mr-3"></i>
+                Monitor Voting
+            </a>
+            <a href="users.html" class="nav-item flex items-center px-6 py-3 text-blue-100 hover:bg-blue-800 hover:text-white transition-colors">
+                <i class="fas fa-user-friends mr-3"></i>
+                Kelola User
+            </a>
+            <a href="results.html" class="nav-item flex items-center px-6 py-3 text-blue-100 hover:bg-blue-800 hover:text-white transition-colors">
+                <i class="fas fa-chart-bar mr-3"></i>
+                Hasil Voting
+            </a>
+            <a href="settings.html" class="nav-item flex items-center px-6 py-3 text-blue-100 hover:bg-blue-800 hover:text-white transition-colors">
+                <i class="fas fa-cog mr-3"></i>
+                Pengaturan
+            </a>
+        </nav>
+        
+        <div class="absolute bottom-0 w-full p-4 border-t border-blue-800">
+            <button onclick="logout()" class="flex items-center w-full px-2 py-2 text-blue-100 hover:bg-blue-800 rounded transition-colors">
+                <i class="fas fa-sign-out-alt mr-3"></i>
+                Logout
+            </button>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div id="mainContent" class="transition-all duration-300 md:ml-64">
+        <!-- Header -->
+        <header class="bg-white shadow-sm border-b">
+            <div class="flex items-center justify-between px-6 py-4">
+                <div class="flex items-center space-x-4">
+                    <button id="toggleSidebar" class="md:hidden text-gray-600">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                    <h2 id="pageTitle" class="text-2xl font-semibold text-gray-800">Kelola Kandidat</h2>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <div class="relative">
+                        <button id="notificationBtn" class="flex items-center space-x-2 text-gray-600 hover:text-gray-800">
+                            <i class="fas fa-bell"></i>
+                            <span class="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">3</span>
+                        </button>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <img src="https://i.pravatar.cc/40?img=10" alt="Admin" class="w-8 h-8 rounded-full">
+                        <span class="text-gray-700 font-medium">Admin</span>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Candidates Content -->
+        <main class="p-6">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-xl font-semibold">Kelola Kandidat</h3>
+                <button onclick="openAddCandidateModal()" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">
+                    <i class="fas fa-plus mr-2"></i>Tambah Kandidat
+                </button>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Candidate 1 -->
+                <div class="bg-white rounded-lg shadow p-6">
+                    <div class="text-center mb-4">
+                        <div class="w-16 h-16 bg-blue-600 text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-3">1</div>
+                        <h4 class="font-semibold text-lg">Rizki Maulana & Ahmad Fauzi</h4>
+                        <p class="text-gray-600">11220001 & 11220002</p>
+                    </div>
+                    <div class="space-y-2 mb-4">
+                        <p class="text-sm"><strong>Visi:</strong> "Himatro Inovatif, Elektro Berprestasi"</p>
+                        <p class="text-sm"><strong>Total Suara:</strong> 342 (38.3%)</p>
+                    </div>
+                    <div class="flex space-x-2">
+                        <button onclick="editCandidate(1)" class="flex-1 bg-yellow-500 text-white py-2 rounded hover:bg-yellow-600 transition-colors">
+                            <i class="fas fa-edit mr-1"></i>Edit
+                        </button>
+                        <button onclick="deleteCandidate(1)" class="flex-1 bg-red-500 text-white py-2 rounded hover:bg-red-600 transition-colors">
+                            <i class="fas fa-trash mr-1"></i>Hapus
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Candidate 2 -->
+                <div class="bg-white rounded-lg shadow p-6">
+                    <div class="text-center mb-4">
+                        <div class="w-16 h-16 bg-green-600 text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-3">2</div>
+                        <h4 class="font-semibold text-lg">Sarah Fitriani & Budi Santoso</h4>
+                        <p class="text-gray-600">11220003 & 11220004</p>
+                    </div>
+                    <div class="space-y-2 mb-4">
+                        <p class="text-sm"><strong>Visi:</strong> "Sinergi untuk Kemajuan Bersama"</p>
+                        <p class="text-sm"><strong>Total Suara:</strong> 298 (33.4%)</p>
+                    </div>
+                    <div class="flex space-x-2">
+                        <button onclick="editCandidate(2)" class="flex-1 bg-yellow-500 text-white py-2 rounded hover:bg-yellow-600 transition-colors">
+                            <i class="fas fa-edit mr-1"></i>Edit
+                        </button>
+                        <button onclick="deleteCandidate(2)" class="flex-1 bg-red-500 text-white py-2 rounded hover:bg-red-600 transition-colors">
+                            <i class="fas fa-trash mr-1"></i>Hapus
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Candidate 3 -->
+                <div class="bg-white rounded-lg shadow p-6">
+                    <div class="text-center mb-4">
+                        <div class="w-16 h-16 bg-purple-600 text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-3">3</div>
+                        <h4 class="font-semibold text-lg">Dimas Pratama & Cindy Permata</h4>
+                        <p class="text-gray-600">11220005 & 11220006</p>
+                    </div>
+                    <div class="space-y-2 mb-4">
+                        <p class="text-sm"><strong>Visi:</strong> "Elektro Unggul, Mandiri, dan Berkarakter"</p>
+                        <p class="text-sm"><strong>Total Suara:</strong> 252 (28.3%)</p>
+                    </div>
+                    <div class="flex space-x-2">
+                        <button onclick="editCandidate(3)" class="flex-1 bg-yellow-500 text-white py-2 rounded hover:bg-yellow-600 transition-colors">
+                            <i class="fas fa-edit mr-1"></i>Edit
+                        </button>
+                        <button onclick="deleteCandidate(3)" class="flex-1 bg-red-500 text-white py-2 rounded hover:bg-red-600 transition-colors">
+                            <i class="fas fa-trash mr-1"></i>Hapus
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Add Candidate Modal -->
+    <div id="addCandidateModal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50">
+        <div class="bg-white rounded-lg p-6 w-full max-w-md mx-4">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-lg font-semibold">Tambah Kandidat Baru</h3>
+                <button onclick="closeAddCandidateModal()" class="text-gray-500 hover:text-gray-700">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <form id="addCandidateForm" class="space-y-4">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Nama Ketua</label>
+                    <input type="text" id="ketuaName" required class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Nama Wakil</label>
+                    <input type="text" id="wakilName" required class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Visi</label>
+                    <textarea id="visi" rows="3" required class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"></textarea>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Misi</label>
+                    <textarea id="misi" rows="3" required class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"></textarea>
+                </div>
+                <div class="flex gap-4 pt-4">
+                    <button type="submit" class="flex-1 bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition-colors">
+                        <i class="fas fa-plus mr-2"></i>Tambah Kandidat
+                    </button>
+                    <button type="button" onclick="closeAddCandidateModal()" class="flex-1 bg-gray-300 text-gray-700 py-2 rounded-lg hover:bg-gray-400 transition-colors">
+                        Batal
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Notification button handler
+        document.getElementById('notificationBtn').addEventListener('click', function() {
+            alert('Notifikasi: 3 pesan baru');
+        });
+
+        // Modal functions
+        function openAddCandidateModal() {
+            document.getElementById('addCandidateModal').classList.remove('hidden');
+            document.getElementById('addCandidateModal').classList.add('flex');
+        }
+
+        function closeAddCandidateModal() {
+            document.getElementById('addCandidateModal').classList.add('hidden');
+            document.getElementById('addCandidateModal').classList.remove('flex');
+            document.getElementById('addCandidateForm').reset();
+        }
+
+        // Form submission
+        document.getElementById('addCandidateForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Kandidat berhasil ditambahkan!');
+            closeAddCandidateModal();
+        });
+
+        // Edit and delete functions
+        function editCandidate(id) {
+            alert('Edit kandidat ' + id);
+        }
+
+        function deleteCandidate(id) {
+            if (confirm('Apakah Anda yakin ingin menghapus kandidat ini?')) {
+                alert('Kandidat berhasil dihapus!');
+            }
+        }
+
+        // Logout function
+        function logout() {
+            if (confirm('Apakah Anda yakin ingin keluar?')) {
+                window.location.href = '../login.html';
+            }
+        }
+    </script>
+</body>
+</html>

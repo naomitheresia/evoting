@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monitor Voting - Admin E-Voting</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="../../css/admin-style.css">
+    <style>
+        .sidebar-active { transform: translateX(0); }
+        .content-shift { margin-left: 16rem; }
+        @media (max-width: 768px) {
+            .content-shift { margin-left: 0; }
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+    <!-- Sidebar -->
+    <div id="sidebar" class="fixed inset-y-0 left-0 z-50 w-64 bg-blue-900 text-white transform -translate-x-full transition-transform duration-300 ease-in-out md:translate-x-0">
+        <div class="flex items-center justify-between p-4 border-b border-blue-800">
+            <div class="flex items-center space-x-3">
+                <img src="../../assets/logo-himatro.png" alt="Himatro" class="w-8 h-8">
+                <h1 class="text-xl font-bold">Admin Panel</h1>
+            </div>
+            <button id="closeSidebar" class="md:hidden">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        
+        <nav class="mt-6">
+            <a href="dashboard.html" class="nav-item flex items-center px-6 py-3 text-blue-100 hover:bg-blue-800 hover:text-white transition-colors">
+                <i class="fas fa-tachometer-alt mr-3"></i>
+                Dashboard
+            </a>
+            <a href="candidates.html" class="nav-item flex items-center px-6 py-3 text-blue-100 hover:bg-blue-800 hover:text-white transition-colors">
+                <i class="fas fa-users mr-3"></i>
+                Kelola Kandidat
+            </a>
+            <a href="voting.html" class="nav-item flex items-center px-6 py-3 text-blue-100 hover:bg-blue-800 hover:text-white transition-colors active">
+                <i class="fas fa-vote-yea mr-3"></i>
+                Monitor Voting
+            </a>
+            <a href="users.html" class="nav-item flex items-center px-6 py-3 text-blue-100 hover:bg-blue-800 hover:text-white transition-colors">
+                <i class="fas fa-user-friends mr-3"></i>
+                Kelola User
+            </a>
+            <a href="results.html" class="nav-item flex items-center px-6 py-3 text-blue-100 hover:bg-blue-800 hover:text-white transition-colors">
+                <i class="fas fa-chart-bar mr-3"></i>
+                Hasil Voting
+            </a>
+            <a href="settings.html" class="nav-item flex items-center px-6 py-3 text-blue-100 hover:bg-blue-800 hover:text-white transition-colors">
+                <i class="fas fa-cog mr-3"></i>
+                Pengaturan
+            </a>
+        </nav>
+        
+        <div class="absolute bottom-0 w-full p-4 border-t border-blue-800">
+            <button onclick="logout()" class="flex items-center w-full px-2 py-2 text-blue-100 hover:bg-blue-800 rounded transition-colors">
+                <i class="fas fa-sign-out-alt mr-3"></i>
+                Logout
+            </button>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div id="mainContent" class="transition-all duration-300 md:ml-64">
+        <!-- Header -->
+        <header class="bg-white shadow-sm border-b">
+            <div class="flex items-center justify-between px-6 py-4">
+                <div class="flex items-center space-x-4">
+                    <button id="toggleSidebar" class="md:hidden text-gray-600">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                    <h2 id="pageTitle" class="text-2xl font-semibold text-gray-800">Monitor Voting</h2>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <div class="relative">
+                        <button id="notificationBtn" class="flex items-center space-x-2 text-gray-600 hover:text-gray-800">
+                            <i class="fas fa-bell"></i>
+                            <span class="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">3</span>
+                        </button>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <img src="https://i.pravatar.cc/40?img=10" alt="Admin" class="w-8 h-8 rounded-full">
+                        <span class="text-gray-700 font-medium">Admin</span>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Voting Monitor Content -->
+        <main class="p-6">
+            <h3 class="text-xl font-semibold mb-6">Monitor Voting Real-time</h3>
+            
+            <!-- Voting Controls -->
+            <div class="bg-white rounded-lg shadow p-6 mb-6">
+                <h4 class="text-lg font-semibold mb-4">Kontrol Voting</h4>
+                <div class="flex flex-wrap gap-4">
+                    <button onclick="startVoting()" class="bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700 transition-colors">
+                        <i class="fas fa-play mr-2"></i>Mulai Voting
+                    </button>
+                    <button onclick="pauseVoting()" class="bg-yellow-600 text-white px-6 py-2 rounded-lg hover:bg-yellow-700 transition-colors">
+                        <i class="fas fa-pause mr-2"></i>Jeda Voting
+                    </button>
+                    <button onclick="stopVoting()" class="bg-red-600 text-white px-6 py-2 rounded-lg hover:bg-red-700 transition-colors">
+                        <i class="fas fa-stop mr-2"></i>Hentikan Voting
+                    </button>
+                    <button onclick="exportResults()" class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors">
+                        <i class="fas fa-download mr-2"></i>Export Hasil
+                    </button>
+                </div>
+            </div>
+
+            <!-- Live Voting Activity -->
+            <div class="bg-white rounded-lg shadow p-6">
+                <h4 class="text-lg font-semibold mb-4">Aktivitas Voting Live</h4>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-sm">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th class="px-4 py-3 text-left">Waktu</th>
+                                <th class="px-4 py-3 text-left">NIM</th>
+                                <th class="px-4 py-3 text-left">Nama</th>
+                                <th class="px-4 py-3 text-left">Pilihan</th>
+                                <th class="px-4 py-3 text-left">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="votingActivity" class="divide-y divide-gray-200">
+                            <tr>
+                                <td class="px-4 py-3">14:32:15</td>
+                                <td class="px-4 py-3">11220123</td>
+                                <td class="px-4 py-3">Ahmad Rizki</td>
+                                <td class="px-4 py-3">Kandidat 1</td>
+                                <td class="px-4 py-3"><span class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs">Berhasil</span></td>
+                            </tr>
+                            <tr>
+                                <td class="px-4 py-3">14:30:42</td>
+                                <td class="px-4 py-3">11220098</td>
+                                <td class="px-4 py-3">Budi Santoso</td>
+                                <td class="px-4 py-3">Kandidat 2</td>
+                                <td class="px-4 py-3"><span class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs">Berhasil</span></td>
+                            </tr>
+                            <tr>
+                                <td class="px-4 py-3">14:28:19</td>
+                                <td class="px-4 py-3">11220087</td>
+                                <td class="px-4 py-3">Sari Dewi</td>
+                                <td class="px-4 py-3">Kandidat 3</td>
+                                <td class="px-4 py-3"><span class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs">Berhasil</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Notification button handler
+        document.getElementById('notificationBtn').addEventListener('click', function() {
+            alert('Notifikasi: 3 pesan baru');
+        });
+
+        // Voting control functions
+        function startVoting() {
+            alert('Voting dimulai!');
+        }
+
+        function pauseVoting() {
+            alert('Voting dijeda!');
+        }
+
+        function stopVoting() {
+            if (confirm('Apakah Anda yakin ingin menghentikan voting?')) {
+                alert('Voting dihentikan!');
+            }
+        }
+
+        function exportResults() {
+            alert('Export hasil voting...');
+        }
+
+        // Logout function
+        function logout() {
+            if (confirm('Apakah Anda yakin ingin keluar?')) {
+                window.location.href = '../login.html';
+            }
+        }
+    </script>
+</body>
+</html>
