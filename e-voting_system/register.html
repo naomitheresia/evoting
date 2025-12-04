@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daftar - E-Voting Himatro 2026</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body class="auth-page">
+    <div class="auth-container">
+        <div class="auth-box">
+            <div class="auth-header">
+                <div class="auth-logo">
+                    <img src="assets/logo-himatro.png" alt="Logo Himatro">
+                    <div>
+                        <span>Himatro</span>
+                        <span>E‑Voting 2026</span>
+                    </div>
+                </div>
+                <h1>Buat Akun Baru</h1>
+                <p>Daftarkan diri Anda untuk berpartisipasi dalam pemilihan</p>
+            </div>
+    
+            <form class="auth-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="firstName">Nama Depan</label>
+                        <input type="text" id="firstName" placeholder="Nama depan" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="lastName">Nama Belakang</label>
+                        <input type="text" id="lastName" placeholder="Nama belakang" required>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="nim">NIM</label>
+                    <input type="text" id="nim" placeholder="Contoh: 12345678" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email Institusional</label>
+                    <input type="email" id="email" placeholder="nama@himatro.ac.id" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">Kata Sandi</label>
+                    <div class="input-with-icon">
+                        <input type="password" id="password" placeholder="Buat kata sandi yang kuat" required>
+                        <button type="button" class="show-password">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="confirmPassword">Konfirmasi Kata Sandi</label>
+                    <input type="password" id="confirmPassword" placeholder="Ketik ulang kata sandi" required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="checkbox">
+                        <input type="checkbox" required>
+                        <span>Saya setuju dengan Syarat & Ketentuan</span>
+                    </label>
+                </div>
+                
+                <button type="submit" class="btn btn-primary btn-block">
+                    <i class="fas fa-user-plus"></i> Daftar Akun
+                </button>
+                
+                <div class="auth-footer">
+                    <p>Sudah punya akun? <a href="login.html">Masuk di sini</a></p>
+                    <a href="index.html" class="back-link">
+                        <i class="fas fa-arrow-left"></i> Kembali ke Beranda
+                    </a>
+                </div>
+            </form>
+        </div>
+        
+        <div class="auth-side">
+            <div class="auth-side-content">
+                <h2>Bergabung dengan E‑Voting</h2>
+                <p>Dengan mendaftar, Anda dapat berpartisipasi dalam pemilihan Ketua Himatro 2026</p>
+                <div class="requirements">
+                    <h3>Persyaratan:</h3>
+                    <ul>
+                        <li><i class="fas fa-check"></i> Mahasiswa aktif Teknik Elektro</li>
+                        <li><i class="fas fa-check"></i> Memiliki NIM valid</li>
+                        <li><i class="fas fa-check"></i> Email institusional aktif</li>
+                        <li><i class="fas fa-check"></i> Belum memberikan suara</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/auth.js"></script>
+</body>
+</html>

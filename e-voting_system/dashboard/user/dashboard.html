@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - E-Voting Himatro 2026</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="dashboard-page">
+    <!-- Header Dashboard -->
+    <header class="dashboard-header">
+        <div class="container">
+            <div class="dashboard-nav">
+                <div class="dashboard-logo">
+                    <a href="../../index.html">
+                        <img src="../../assets/logo-himatro.png" alt="Logo Himatro">
+                        <div>
+                            <span>Himatro</span>
+                            <span>Dashboard Voting</span>
+                        </div>
+                    </a>
+                </div>
+                <div class="user-info">
+                    <div class="user-avatar">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="user-details">
+                        <span class="user-name">Mahasiswa Teknik Elektro</span>
+                        <span class="user-nim">NIM: 11220099</span>
+                    </div>
+                    <button class="logout-btn" id="logoutBtn">
+                        <i class="fas fa-sign-out-alt"></i>
+                        Keluar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="dashboard-main">
+        <div class="container">
+            <!-- Voting Status -->
+            <div class="voting-status">
+                <div class="status-card">
+                    <div class="status-icon">
+                        <i class="fas fa-vote-yea"></i>
+                    </div>
+                    <div class="status-content">
+                        <h3>Status Voting Anda</h3>
+                        <p class="status-text" id="votingStatus">Belum Memilih</p>
+                        <p class="status-time">Waktu tersisa: <span id="countdown">24:00:00</span></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Voting Instructions -->
+            <div class="voting-instructions">
+                <h2><i class="fas fa-info-circle"></i> Petunjuk Voting</h2>
+                <ol>
+                    <li>Pilih salah satu pasangan calon di bawah ini</li>
+                    <li>Klik tombol "Pilih Kandidat" pada pasangan pilihan Anda</li>
+                    <li>Konfirmasi pilihan Anda sebelum mengirim</li>
+                    <li>Setelah memilih, Anda tidak dapat mengubah pilihan</li>
+                </ol>
+            </div>
+
+            <!-- Candidates for Voting -->
+            <div class="voting-candidates">
+                <h2>Pilih Pasangan Calon</h2>
+                <div class="candidates-voting-grid">
+                    <!-- Candidate 1 -->
+                    <div class="candidate-voting-card" data-id="1">
+                        <div class="candidate-voting-number">1</div>
+                        <div class="candidate-voting-photos">
+                            <div class="voting-photo">
+                                <img src="https://i.pravatar.cc/150?img=1" alt="Rizki Maulana">
+                                <div class="photo-label">Ketua</div>
+                            </div>
+                            <div class="voting-photo">
+                                <img src="https://i.pravatar.cc/150?img=2" alt="Ahmad Fauzi">
+                                <div class="photo-label">Wakil</div>
+                            </div>
+                        </div>
+                        <div class="candidate-voting-info">
+                            <h3>Rizki Maulana & Ahmad Fauzi</h3>
+                            <p class="candidate-nim">11220001 & 11220002</p>
+                            <div class="candidate-vision">
+                                <p>"Himatro Inovatif, Elektro Berprestasi"</p>
+                            </div>
+                            <div class="candidate-tags">
+                                <span>Teknologi</span>
+                                <span>Inovasi</span>
+                                <span>Prestasi</span>
+                            </div>
+                        </div>
+                        <button class="btn btn-primary btn-vote" data-candidate="1">
+                            <i class="fas fa-check-circle"></i> Pilih Kandidat Ini
+                        </button>
+                    </div>
+
+                    <!-- Candidate 2 -->
+                    <div class="candidate-voting-card" data-id="2">
+                        <div class="candidate-voting-number">2</div>
+                        <div class="candidate-voting-photos">
+                            <div class="voting-photo">
+                                <img src="https://i.pravatar.cc/150?img=3" alt="Sarah Fitriani">
+                                <div class="photo-label">Ketua</div>
+                            </div>
+                            <div class="voting-photo">
+                                <img src="https://i.pravatar.cc/150?img=4" alt="Budi Santoso">
+                                <div class="photo-label">Wakil</div>
+                            </div>
+                        </div>
+                        <div class="candidate-voting-info">
+                            <h3>Sarah Fitriani & Budi Santoso</h3>
+                            <p class="candidate-nim">11220003 & 11220004</p>
+                            <div class="candidate-vision">
+                                <p>"Sinergi untuk Kemajuan Bersama"</p>
+                            </div>
+                            <div class="candidate-tags">
+                                <span>Kolaborasi</span>
+                                <span>Sosial</span>
+                                <span>Sinergi</span>
+                            </div>
+                        </div>
+                        <button class="btn btn-primary btn-vote" data-candidate="2">
+                            <i class="fas fa-check-circle"></i> Pilih Kandidat Ini
+                        </button>
+                    </div>
+
+                    <!-- Candidate 3 -->
+                    <div class="candidate-voting-card" data-id="3">
+                        <div class="candidate-voting-number">3</div>
+                        <div class="candidate-voting-photos">
+                            <div class="voting-photo">
+                                <img src="https://i.pravatar.cc/150?img=5" alt="Dimas Pratama">
+                                <div class="photo-label">Ketua</div>
+                            </div>
+                            <div class="voting-photo">
+                                <img src="https://i.pravatar.cc/150?img=6" alt="Cindy Permata">
+                                <div class="photo-label">Wakil</div>
+                            </div>
+                        </div>
+                        <div class="candidate-voting-info">
+                            <h3>Dimas Pratama & Cindy Permata</h3>
+                            <p class="candidate-nim">11220005 & 11220006</p>
+                            <div class="candidate-vision">
+                                <p>"Elektro Unggul, Mandiri, dan Berkarakter"</p>
+                            </div>
+                            <div class="candidate-tags">
+                                <span>Karakter</span>
+                                <span>Mandiri</span>
+                                <span>Unggul</span>
+                            </div>
+                        </div>
+                        <button class="btn btn-primary btn-vote" data-candidate="3">
+                            <i class="fas fa-check-circle"></i> Pilih Kandidat Ini
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Confirmation Modal (Hidden by default) -->
+            <div class="modal-overlay" id="confirmationModal">
+                <div class="modal">
+                    <div class="modal-header">
+                        <h3><i class="fas fa-exclamation-triangle"></i> Konfirmasi Pilihan</h3>
+                        <button class="modal-close" id="closeModal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Anda akan memilih:</p>
+                        <div class="selected-candidate" id="selectedCandidateInfo">
+                            <!-- Will be filled by JavaScript -->
+                        </div>
+                        <p class="warning-text">
+                            <i class="fas fa-info-circle"></i> 
+                            Setelah mengkonfirmasi, Anda <strong>TIDAK DAPAT</strong> mengubah pilihan.
+                        </p>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-outline" id="cancelVote">Batal</button>
+                        <button class="btn btn-primary" id="confirmVote">Ya, Konfirmasi Pilihan</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="dashboard-footer">
+        <div class="container">
+            <p>&copy; 2026 Himatro - E-Voting System. Hak suara Anda terlindungi.</p>
+            <p class="footer-note">
+                <i class="fas fa-shield-alt"></i> 
+                Sistem voting aman dengan enkripsi end-to-end
+            </p>
+        </div>
+    </footer>
+
+    <!-- Success Modal -->
+    <div class="modal-overlay" id="successModal" style="display: none;">
+        <div class="modal success-modal">
+            <div class="modal-header">
+                <h3><i class="fas fa-check-circle"></i> Voting Berhasil!</h3>
+            </div>
+            <div class="modal-body">
+                <div class="success-icon">
+                    <i class="fas fa-check"></i>
+                </div>
+                <p>Suara Anda telah tercatat dengan aman.</p>
+                <p>Terima kasih telah berpartisipasi dalam pemilihan Ketua Himatro 2026.</p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" id="closeSuccess">Tutup</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="dashboard.js"></script>
+</body>
+</html>
